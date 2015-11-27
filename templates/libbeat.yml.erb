@@ -1,0 +1,99 @@
+
+output:
+<% if scope['beats::output_es'] -%>
+  elasticsearch:
+    hosts: ["<%= scope['beats::output_es_hosts'].join('","') %>"]
+    protocol: "<%= scope['beats::output_es_protocol'] %>"
+<% unless scope['beats::output_es_username'].nil? -%>
+    username: "<%= scope['beats::output_es_username'] %>"
+<%- end -%>
+<% unless scope['beats::output_es_password'].nil? -%>
+    password: "<%= scope['beats::output_es_password'] %>"
+<%- end -%>
+    worker: <%= scope['beats::output_es_worker'] %>
+<% if ! @output_index.nil? -%>
+    index: <%= @output_index %>
+<%- elsif ! scope['beats::output_es_index'].nil? -%>
+    index: <%= scope['beats::output_es_index'] %>
+<%- end -%>
+<% unless scope['beats::output_es_path'].nil? -%>
+    path: <%= scope['beats::output_es_path'] %>
+<%- end -%>
+    save_topology: <%= scope['beats::output_es_save_topology'] %>
+    tls:
+<% unless scope['beats::tls_certificate_authorities'].empty? -%>
+      certificate_authorities: ["<%= scope['beats::tls_certificate_authorities'].join('","') %>"]
+<%- end -%>
+<% if ! @tls_certificate.nil? -%>
+      certificate: <%= @tls_certificate %>
+<%- elsif ! scope['beats::tls_certificate'].nil? -%>
+      certificate: <%= scope['beats::tls_certificate'] %>
+<%- end -%>
+<% if ! @tls_certificate_key.nil? -%>
+      certificate_key: <%= @tls_certificate_key %>
+<%- elsif ! scope['beats::tls_certificate_key'].nil? -%>
+      certificate_key: <%= scope['beats::tls_certificate_key'] %>
+<%- end -%>
+      insecure: <%= scope['beats::tls_insecure'] %>
+      min_version: <%= scope['beats::tls_min_version'] %>
+      max_version: <%= scope['beats::tls_max_version'] %>
+<%- end -%>
+
+<% if scope['beats::output_ls'] -%>
+  logstash:
+    hosts: ["<%= scope['beats::output_ls_hosts'].join('","') %>"]
+    worker: <%= scope['beats::output_ls_worker'] %>
+    loadbalance: <%= scope['beats::output_ls_loadbalance'] %>
+<% if ! @output_index.nil? -%>
+    index: <%= @output_index %>
+<%- elsif ! scope['beats::output_ls_index'].nil? -%>
+    index: <%= scope['beats::output_ls_index'] %>
+<%- end -%>
+    tls:
+<% unless scope['beats::tls_certificate_authorities'].empty? -%>
+      certificate_authorities: ["<%= scope['beats::tls_certificate_authorities'].join('","') %>"]
+<%- end -%>
+<% if ! @tls_certificate.nil? -%>
+      certificate: <%= @tls_certificate %>
+<%- elsif ! scope['beats::tls_certificate'].nil? -%>
+      certificate: <%= scope['beats::tls_certificate'] %>
+<%- end -%>
+<% if ! @tls_certificate_key.nil? -%>
+      certificate_key: <%= @tls_certificate_key %>
+<%- elsif ! scope['beats::tls_certificate_key'].nil? -%>
+      certificate_key: <%= scope['beats::tls_certificate_key'] %>
+<%- end -%>
+      insecure: <%= scope['beats::tls_insecure'] %>
+      min_version: <%= scope['beats::tls_min_version'] %>
+      max_version: <%= scope['beats::tls_max_version'] %>
+<%- end -%>
+
+shipper:
+<% unless @shipper_name.nil? %>
+  name: <%= @shipper_name %>
+<%- end -%>
+<% if ! @shipper_tags.empty? -%>
+  tags: ["<%= @shipper_tags.join('","') %>"]
+<%- elsif ! scope['beats::shipper_tags'].empty? -%>
+  tags: ["<%= scope['beats::shipper_tags'].join('","') %>"]
+<%- end -%>
+  ignore_outgoing: <%= scope['beats::shipper_ignore_outgoing'] %>
+  refresh_topology_freq: <%= scope['beats::shipper_refresh_topology_freq'] %>
+  topology_expire: <%= scope['beats::shipper_topology_expire'] %>
+  geoip:
+    paths:
+      - "/usr/share/GeoIP/GeoIP.dat"
+      - "/usr/share/GeoIP/GeoIPv6.dat"
+
+logging:
+  to_syslog: <%= scope['beats::logging_to_syslog'] %>
+  to_files: <%= scope['beats::logging_to_files'] %>
+  files:
+    path: <%= scope['beats::logging_files_path'] %>
+<% unless scope['beats::logging_files_name'].nil? -%>
+    name: <%= scope['beats::logging_files_name'] %>
+<%- end -%>
+<% unless scope['beats::logging_selectors'].empty? %>
+    selectors: ["<%= scope['beats::logging_selectors'].join('","') %>"]
+<%- end -%>
+    level: <%= scope['beats::logging_level'] %>

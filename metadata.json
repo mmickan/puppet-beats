@@ -1,0 +1,27 @@
+{
+  "name": "mmickan-beats",
+  "version": "0.1.0",
+  "source": "https://github.com/mmickan/puppet-beats",
+  "author": "mmickan",
+  "license": "Apache 2.0",
+  "summary": "Deploy, configure and manage Beats data shippers",
+  "description": "Deploy, configure and manage Beats data shippers",
+  "project_page": "https://github.com/mmickan/puppet-beats",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.2.0 <5.0.0"
+    },
+    {
+      "name": "puppetlabs/apt"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "14.04"
+      ]
+    }
+  ]
+}

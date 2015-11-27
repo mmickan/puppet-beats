@@ -1,0 +1,3 @@
+---
+beats::output_es: true
+beats::output_ls: true

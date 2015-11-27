@@ -1,0 +1,26 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+<% @paths.each do |path| -%>
+        - <%= path %>
+<%- end -%>
+      encoding: <%= @_encoding %>
+      input_type: <%= @_input_type %>
+<% unless @_fields.empty? -%>
+      fields:
+<% @_fields.each do |field,value| -%>
+        <%= field %>: <%= value %>
+<%- end -%>
+<%- end -%>
+      fields_under_root: <%= @_fields_under_root %>
+      ignore_older: <%= @_ignore_older %>
+      document_type: <%= @_document_type %>
+      scan_frequency: <%= @_scan_frequency %>
+      harvester_buffer_size: <%= @_harvester_buffer_size %>
+      tail_files: <%= @_tail_files %>
+      backoff: <%= @_backoff %>
+      max_backoff: <%= @_max_backoff %>
+      backoff_factor: <%= @_backoff_factor %>
+      partial_line_waiting: <%= @_partial_line_waiting %>
+      force_close_files: <%= @_force_close_files %>
