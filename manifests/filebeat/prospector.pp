@@ -55,6 +55,13 @@ define beats::filebeat::prospector(
   $_partial_line_waiting  = pick($partial_line_waiting, $beats::filebeat::partial_line_waiting)
   $_force_close_files     = pick($force_close_files, $beats::filebeat::force_close_files)
 
+  ensure_resource('file', '/etc/filebeat/conf.d', {
+    ensure => 'directory',
+    mode   => '0755',
+    owner  => 'root',
+    group  => 'root',
+  })
+
   file { "/etc/filebeat/conf.d/${name}.yml":
     content => template('beats/prospector.yml.erb'),
   }

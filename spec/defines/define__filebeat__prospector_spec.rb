@@ -18,6 +18,7 @@ describe 'beats::filebeat::prospector', :type => :define do
           end
 
           it { should compile.with_all_deps }
+          it { should contain_file('/etc/filebeat/conf.d').with_ensure('directory') }
           it { should contain_file('/etc/filebeat/conf.d/syslog.yml').with_content(/- \/var\/log\/syslog/) }
         end
       end
