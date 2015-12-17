@@ -18,14 +18,19 @@ class beats::repo::apt {
         $url = 'https://packages.elastic.co/beats/apt'
       }
 
-      apt::source { 'filebeat':
-        ensure      => $ensure,
-        location    => $url,
-        release     => 'stable',
-        repos       => 'main',
-        include_src => false,
-        key         => $beats::repo_key_id,
-        key_source  => $beats::repo_key_source,
+      apt::source { 'beats':
+        ensure     => $ensure,
+        location   => $url,
+        release    => 'stable',
+        repos      => 'main',
+        include    => {
+          deb => true,
+          src => false,
+        },
+        key        => {
+          id     => $beats::repo_key_id,
+          source => $beats::repo_key_source,
+        },
       }
 
     } else {
