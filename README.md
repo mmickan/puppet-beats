@@ -1,6 +1,10 @@
-#beats
+**This repository has been archived**
 
-####Table of Contents
+This repository is no longer maintained.
+
+# beats
+
+#### Table of Contents
 
 1. [Overview](#overview)
 2. [Module Description - What beats does and why it is useful](#module-description)
@@ -12,7 +16,7 @@
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to beats](#development)
 
-##Overview
+## Overview
 
 Deploy one or more data shippers from [Elastic](http://elastic.co/)'s
 [Beats](https://www.elastic.co/products/beats) platform.
@@ -21,27 +25,27 @@ Tested with Ubuntu 14.04, but should work on other versions of Ubuntu and
 other Debian derivatives.  Preliminary support for RHEL is in place but is
 currently untested.
 
-##Module Description
+## Module Description
 
 This module will eventually manage the three Beats data shippers (filebeat,
 packetbeat and topbeat) provided by Elastic, and to a lesser extent manages
 custom Beats data shippers.  In the current version only filebeat and
 topbeat are supported.
 
-##Setup
+## Setup
 
-###What [beats] affects
+### What [beats] affects
 
 * Installs the Beats package repository
 * Installs required packages
 * Writes configuration files
 * Manages services for each data shipper installed
 
-###Setup Requirements
+### Setup Requirements
 
 Requires the puppetlabs/stdlib module.
 
-##Usage
+## Usage
 
 
 To override any of the default settings in the beats class, use Hiera:
@@ -73,11 +77,11 @@ beats::filebeat::prospector { 'syslog':
 
 Full documentation of parameters is included in the init.pp manifest file.
 
-##Reference
+## Reference
 
-##Limitations
+## Limitations
 
-##Development
+## Development
 
 Contributions are welcome.  Open an
 [issue](https://github.com/mmickan/puppet-beats/issues) or
@@ -87,6 +91,6 @@ tests are appreciated with pull requests, but not a hard requirement.
 Please ensure your commit message clearly explains the problem your patch
 solves.
 
-##Contributors
+## Contributors
 
-Written by Mark Mickan <mark.mickan@blackboard.com>.
+Written by Mark Mickan <mark.mickan@articul-8.com>.
